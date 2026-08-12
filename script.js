@@ -81,12 +81,8 @@ const weatherCode = {
 61: "Rain"
 };
 
-// ---- TODO 5: Build hourly + daily cards ----
-// Clear hourlyList/dailyList, then loop over the forecast data and
-// append new elements matching the structure already in index.html
-// (.hourly__item and .daily__row).
 
-// ---- TODO 6: Toggle the search panel ----
+//  Toggle the search panel 
 searchToggle.addEventListener('click', () => {
   const isHidden = searchForm.hasAttribute('hidden');
   if (isHidden) {
@@ -98,7 +94,7 @@ searchToggle.addEventListener('click', () => {
   searchToggle.setAttribute('aria-expanded', String(isHidden));
 });
 
-// ---- TODO 7: Handle search submit ----
+// Handle search submit
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const query = searchInput.value.trim();
@@ -106,7 +102,7 @@ searchForm.addEventListener('submit', (event) => {
   // geocode `query` -> lat/lon -> getWeather(lat, lon)
 });
 
-// ---- Loading / error helper (feel free to use or change) ----
+// ---- Loading / error helper
 function setStatus(message) {
   if (!message) {
     statusMessage.setAttribute('hidden', '');
