@@ -57,15 +57,17 @@ searchForm.addEventListener('submit', async (event) => {
 //Fetch current conditions
  async function getWeather(lat, lon) {
     try {
-   const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weathercode,pressure_msl&timezone=auto`);
+   const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weathercode,pressure_msl&timezone=auto&daily=uv_index_max`);
    const data = await res.json();
       currentTemp.textContent = Math.round(data.current.temperature_2m);
    humidity.textContent = `${data.current.relative_humidity_2m}%`;
 windSpeed.textContent = `${Math.round(data.current.wind_speed_10m)}mph`;
 pressure.textContent = `${Math.round(data.current.pressure_msl)}mb`;
 conditionText.textContent = weatherCode[data.current.weathercode] || 'Unknown';
+uvIndex.textContent = data.daily.uv_index_max[0];
         console.log(data);
     } catch (err) {
+      console.log(err);
     setStatus('Something went wrong - try again')
    }
  }
