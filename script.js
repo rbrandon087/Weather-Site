@@ -65,6 +65,18 @@ windSpeed.textContent = `${Math.round(data.current.wind_speed_10m)}mph`;
 pressure.textContent = `${Math.round(data.current.pressure_msl)}mb`;
 conditionText.textContent = weatherCode[data.current.weathercode] || 'Unknown';
 uvIndex.textContent = data.daily.uv_index_max[0];
+const hourlyList = document.getElementById('hourly-list');
+   hourlyList.innerHTML = '';
+  for (let i = 0; i < data.hourly.time.length; i++) {
+   const outDiv = document.createElement('div');
+   outDiv.classList.add('hourly__item');
+   const hourlyTime = document.createElement('span');
+   hourlyTime.textContent = new Date(data.hourly.time[i]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+   outDiv.appendChild(hourlyTime);
+   hourlyList.appendChild(outDiv);
+      hourlyTime.classList.add('hourly__time');
+  }
         console.log(data);
     } catch (err) {
       console.log(err);
