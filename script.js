@@ -72,10 +72,17 @@ const hourlyList = document.getElementById('hourly-list');
    outDiv.classList.add('hourly__item');
    const hourlyTime = document.createElement('span');
    hourlyTime.textContent = new Date(data.hourly.time[i]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
    outDiv.appendChild(hourlyTime);
    hourlyList.appendChild(outDiv);
       hourlyTime.classList.add('hourly__time');
+      const hourlyIcon = document.createElement('span');
+hourlyIcon.classList.add('hourly__icon');
+hourlyIcon.textContent = "☀️";
+outDiv.appendChild(hourlyIcon);
+const hourlyTemp = document.createElement('span');
+hourlyTemp.classList.add('hourly__temp');
+hourlyTemp.textContent = `${Math.round(data.hourly.temperature_2m[i])}°`;
+outDiv.appendChild(hourlyTemp);
   }
         console.log(data);
     } catch (err) {
